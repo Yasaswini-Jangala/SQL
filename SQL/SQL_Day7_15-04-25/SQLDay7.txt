@@ -1,0 +1,168 @@
+PSEUDO COLUMNS
+--------------
+These are Virtual Columns which are present in each and every Table
+	1. ROWID -> It has address of Record.
+		    It contains exactly 18 characters
+		    It is generated at the time of Insertion of new Record
+		    It is Unique for each row/ record
+		    It is static, It can't be renamed (or) deleted
+			SELECT *
+			FROM TABLE_NAME
+			WHERE ROWID = 'ROW_ID_OF_RECORD'
+
+		     
+		SELECT ROWID, ROWNUM, TABLE_NAME.*
+		FROM TABLE_NAME;
+
+	2. ROWNUM -> It is a serial number given to each and every record.
+		     It is generated at the time of execution
+		     It is Unique
+		     It is dynamic, because we can 
+		     It always starts from 1
+		     It
+			SELECT TABLE_NAME.*, ROWNUM 
+			FROM TABLE_NAME
+			WHERE ROWNUM = INTEGER_VALUE;
+				-> Here as the condition is static and there is no increment in INTEGER_VALUE, the row numbers are not assigned and we get output as "no rows selected" 
+			SELECT ROWNUM, ROWID, EMP.*
+			FROM TABLE_NAME
+			WHERE <FILER_CONDITION>
+
+			1. To make ROWNUM as Static
+			SELECT *
+			FROM (
+				SELECT ROWNUM SLNO, TABLE_NAME.*
+				FROM TABLE NAME
+			) WHERE SLNO = INTEGER_VALUE;
+
+
+
+First Half
+SELECT * FROM (SELECT ROWNUM SLNO, EMP.* FROM EMP WHERE ROWNUM <= (SELECT COUNT(*)/2 AS MID
+FROM EMP))
+----------------
+Second Half
+SELECT ROWNUM, EMP.* FROM EMP
+MINUS
+SELECT * FROM (SELECT ROWNUM SLNO, EMP.* FROM EMP WHERE ROWNUM <= (SELECT COUNT(*)/2 AS MID FROM EMP
+))
+----------------
+DELETE FROMTABLE_NAME
+WHERE ROWID = (
+		SELECT MAX(ROWID)
+		FROM EMP3
+		WHERE ENAME = 'SMITH'
+	     );
+
+
+Nth MAX Sal using 
+		1. Arrange all distinct salaries in descending order
+			SELECT DISTINCT SAL
+			FROM EMP
+			ORDER BY SAL;
+
+		2. Select ROWNUM of all the distinct salaries
+			SELECT ROWNUM SLNO, SAL
+			FROM ( 
+				SELECT DISTINCT SAL
+				FROM EMP
+				ORDER BY SAL
+			);
+			
+		3.  
+			SELECT SAL
+			FROM (
+				SELECT ROWNUM SLNO, SAL
+				FROM (
+					SELECT DISTINCT SAL
+					FROM EMP
+					ORDER BY SAL DESC
+				     )
+			     )
+			WHERE SLNO IN (5,8);	
+
+		4.  
+			SELECT MAX(SAL)
+			FROM (
+				SELECT ROWNUM SLNO, SAL
+				FROM (
+					SELECT DISTINCT SAL
+					FROM EMP
+					ORDER BY SAL DESC
+				     )
+			     )
+			WHERE SLNO IN (5, 8);	
+			
+
+Nth MIN Sal using 
+		1. Arrange all distinct salaries in descending order
+			SELECT DISTINCT SAL
+			FROM EMP
+			ORDER BY SAL;
+
+		2. Select ROWNUM of all the distinct salaries
+			SELECT ROWNUM SLNO, SAL
+			FROM ( 
+				SELECT DISTINCT SAL
+				FROM EMP
+				ORDER BY SAL
+			);	
+			
+		3.  
+			SELECT SAL
+			FROM (
+				SELECT ROWNUM SLNO, SAL
+				FROM (
+					SELECT DISTINCT SAL
+					FROM EMP
+					ORDER BY SAL
+				     )
+			     )
+			WHERE SLNO = 8;	
+
+
+		4.  
+			SELECT MIN(SAL)
+			FROM (
+				SELECT ROWNUM SLNO, SAL
+				FROM (
+					SELECT DISTINCT SAL
+					FROM EMP
+					ORDER BY SAL
+				     )
+			     )
+			WHERE SLNO IN (5, 8);	
+			
+
+DATA DICTONARY
+--------------
+Consists of Meta Data (TABLES, USER CONSTRAINTS, USER INDEXES, etc)
+
+To display INDEXES
+SELECT 
+	TABLE_NAME,
+	COLUMN_NAME,
+	INDEX_NAME
+	FROM ALL_IND_COLUMNS
+	WHERE TABLE_OWNER = 'C##USER_NAME'
+	
+	
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM USER_CONSTRAINTS
+WHERE TABLE_NAME = 'TABLE_NAME_1'
+
+ UPDATE EMP
+ 	SET SAL = 0
+ 	WHERE EMPNO IN ( 
+		SELECT EMPNO
+			FROM (
+			SELECT ROWNUM SLNO, EMP.* FROM EMP 
+			WHERE ROWNUM <= 7)
+	WHERE SLNO (3,5,7));
+	
+
+ UPDATE EMP
+ SET SAL = 1
+ WHERE EMPNO IN ( SELECT EMPNO FROM (SELECT ROWNUM SLNO, EMP.* FROM EMP) WHERE
+ SLNO IN (3, 4, 5))

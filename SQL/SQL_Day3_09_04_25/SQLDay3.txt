@@ -1,0 +1,178 @@
+SUB QUERY (or) NESTED QUERY
+___________________________
+A Sub Query which is written inside another Query is known as Sub Query.
+We have 2 Queries, They are
+	1. Outer Query
+	2. Inner Query (or) Sub Query (or) Nested Query.
+Inner Query executes First and the Sub Query Executes Next.
+
+Working Principle of Sub Query
+______________________________
+1. Here we have Outer and Inner Queries.
+2. Inner Query always executes first and gives half of the output.
+3. Output of Inner Query is the Input of Outer Query.
+4. Using this Sub Query Output as Input to Outer Query, Outer Query executes and gives full (or) entire output.
+5. Outer Query is completely dependent on Inner Query.
+
+WHEN AND WHY DO WE USE SUB QUERY 
+_________________________________
+We use Sub Queries in 2 Cases.
+
+CASE 1 -> Whenever there is an unknown present in Query, we use Sub query to find the unknown.
+	SELECT COL_NAME
+	FROM TABLE_NAME
+	WHERE <FILTER_CONDITION_1> IS_COMPARED_TO 
+		(SELECT COL_NAME
+		FROM TABLE_NAME
+		WHERE <FILTER_CONDITION_2>);
+
+CASE 2 -> Whenever the condition to be executed and data to be selected are in different tables.
+	SELECT COL_NAME_FROM_TABLE_1
+	FROM TABLE_1_NAME
+	WHERE <FILTER_CONDITION_1> IS_COMPARED_TO 
+		(SELECT COL_NAME_COMMON_IN_BOTH_TABLES
+		FROM TABLE_2_NAME
+		WHERE <FILTER_CONDITION_2>);
+
+TYPES OF SUB QUERIES
+____________________
+We have 2 types of Sub Queries
+
+	1. Single Row Sub Query -> If a Sub Query returns a single value (or) a single record, we call it Single Row Sub Query.
+	SYNTAX
+		SELECT COL_NAME
+		FROM TABLE_NAME
+		WHERE <FILTER_CONDITION_1> IS_COMPARED_TO
+			(SELECT COL_NAME
+			FROM TABLE_NAME
+			WHERE <FILTER_CONDITION_2>);
+
+                                         (OR)
+
+		SELECT COL_NAME_FROM_TABLE_1
+		FROM TABLE_1_NAME
+		WHERE <FILTER_CONDITION_1> IS_COMPARED_TO 
+			(SELECT COL_NAME_COMMON_IN_BOTH_TABLES
+			FROM TABLE_2_NAME
+			WHERE <FILTER_CONDITION_2>);
+
+
+	2. Multi Row Sub Query -> If a Sub Query returns more than a single value (or) a single record, we call it Multi Row Sub Query.
+
+	SUB QUERY OPERATORS
+	____________________
+	We have 4 Sub Query Operators, They are
+		ALL -> It returns True, if all of the values of Sub Query satisfy the condition.
+		ANY -> It returns True, if any of the values of Sub Query satisfy the condition.
+		EXISTS -> It returns True, if a Sub Query returns any of the values other than NULL
+			  
+		NOT EXISTS -> It returns True, if a Sub Query not returns any of the values or NULL
+			      
+			      
+			SELECT COL_NAME
+			FROM TABLE_NAME
+			WHERE <FILTER_CONDITION_1> IS_COMPARED_TO_ANY_(OR)_ALL_(OR)_EXISTS_(OR)_NOT EXISTS_
+				(SELECT COL_NAME
+				FROM TABLE_NAME
+				WHERE <FILTER_CONDITION_2>);
+
+                                         (OR)
+
+			SELECT COL_NAME_FROM_TABLE_1
+			FROM TABLE_1_NAME
+			WHERE <FILTER_CONDITION_1> IS_COMPARED_TO_ANY_(OR)_ALL_(OR)_EXISTS_(OR)_NOT EXISTS_
+				(SELECT COL_NAME_COMMON_IN_BOTH_TABLES
+				FROM TABLE_2_NAME
+				WHERE <FILTER_CONDITION_2>);
+
+NESTED SUB QUERY
+_________________
+A Sub Query which is written inside another Sub Query is known as Nested Sub Query.
+We can nest up to 250 Sub Queries.
+
+WAQTD 1st MAXIMUM SALARY FROM EMP TABLE
+SELECT MAX(SAL) FROM EMP;
+
+WAQTD 2nd MAXIMUM SALARY FROM EMP TABLE
+SELECT MAX(SAL) FROM EMP WHERE SAL < (SELECT MAX(SAL) FROM EMP);
+
+WAQTD 3rd MAXIMUM SALARY FROM EMP TABLE
+SELECT MAX(SAL) FROM EMP WHERE SAL < (SELECT MAX(SAL) FROM EMP WHERE SAL < (SELECT MAX(SAL) FROM EMP));
+
+WAQTD 1st MINIMUM SALARY FROM EMP TABLE
+SELECT MIN(SAL) FROM EMP;
+
+WAQTD 2nd MINIMUM SALARY FROM EMP TABLE
+SELECT MIN(SAL) FROM EMP WHERE SAL > (SELECT MIN(SAL) FROM EMP);
+
+WAQTD 3rd MINIMUM SALARY FROM EMP TABLE
+SELECT MIN(SAL) FROM EMP WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE SAL > (SELECT MIN(SAL) FROM EMP));
+
+
+EMPLOYEE MANAGER REALTION
+___________________________
+CASE 1 - To find the Manager of the Employee.
+	SELECT EMPNO, ENAME
+	FROM EMP
+	WHERE ENO IN (SELECT MGR
+		FROM EMP
+		WHERE ENAME='BHEEM');
+
+CASE 2 - To find the Employees reporting to the Manger.
+	SELECT MGR, ENAME
+	FROM EMP
+	WHERE MGR IN (SELECT ENO
+		FROM EMP
+		WHERE ENAME='BHEEM');
+
+WINDOW FUNCTIONS
+_________________
+	1. ROW_NUMBER-> OVER is mandatory with ROW_NUMBER
+	SELECT DEPTNO,SAL,ROW_NUMBER() OVER (PARTITION BY DEPTNO ORDER BY SAL ASC) AS RN
+
+		SELECT * FROM (SELECT DEPTNO,SAL,ROW_NUMBER() OVER 
+			(PARTITION BY DEPTNO ORDER BY SAL) AS RN FROM EMP) RESULT
+			WHERE RN=2 AND DEPTNO=10
+
+	2. RANK -> OVER is mandatory with RANK
+	SELECT DEPTNO,SAL,RANK() OVER (PARTITION BY DEPTNO ORDER BY SAL DESC) AS R
+
+		SELECT * FROM (SELECT DEPTNO,SAL,ROW_NUMBER() OVER 
+			(PARTITION BY DEPTNO ORDER BY SAL) AS RN FROM EMP) RESULT
+			WHERE R=2 AND DEPTNO=20;
+
+	3. DENSE_RANK -> OVER is mandatory with DENSE_RANK
+	SELECT DEPTNO,SAL,DENSE_RANK() OVER (PARTITION BY DEPTNO ORDER BY SAL DESC) AS DR
+
+		SELECT * FROM (SELECT DEPTNO,SAL,ROW_NUMBER() OVER 
+			(PARTITION BY DEPTNO ORDER BY SAL) AS RN FROM EMP) RESULT
+			WHERE DR=2;
+
+	4. LEAD(COL) -> Takes the next value from column and perform operations with the next value of the column.
+	SELECT ENAME,SAL,LEAD(SAL) OVER (PARTITION BY DEPTNO ORDER BY SAL DESC) AS L
+
+		SELECT ENAME,SAL,LEAD(SAL) OVER (PARTITION BY DEPTNO ORDER BY SAL) AS L - SAL;
+
+
+	5. LAG(COL) -> Takes the previous value from column and perform operations with the previous value of the column.
+	SELECT ENAME,SAL,LAG(SAL) OVER (PARTITION BY DEPTNO ORDER BY SAL DESC) AS L
+
+		SELECT ENAME,SAL,LAG(SAL) OVER (PARTITION BY DEPTNO ORDER BY SAL) AS L + SAL;
+
+
+SET OPERATORS -> Combine results of 2 queries.
+_____________
+
+	1. UNION -> Combine results of 2 queries and gives result by removing duplicates and to perform UNION, the columns must have same datatype.
+gives the 1st query col name as the name of result
+		SELECT SAL FROM EMP UNION SELECT SAL FROM EMP;
+		SELECT SAL FROM EMP UNION SELECT ENAME FROM EMP;  ->  NOT VALID AS DIFFERENT DATATYPES.
+
+	2. UNION ALL -> Combine results of 2 queries and display without removing the duplicates and to perform UNION ALL, the columns must have same datatype.
+		SELECT SAL FROM EMP UNION ALL SELECT SAL FROM EMP;
+
+	3. INTERSECT -> Gives only the common values present in both the tables and to perform INTERSECT, the columns must have same datatype.
+		SELECT DEPTNO FROM EMP INTERSECT SELECT DEPTNO FROM EMP;
+
+	4. MINUS -> Removes the common elements, Only displays the values present in the 1st set but not in the 2nd set, and to perform MINUS, the columns must have same datatype.
+		SELECT DEPTNO FROM DEPT MINUS SELECT DEPTNO FROM EMP;

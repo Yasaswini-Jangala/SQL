@@ -1,0 +1,303 @@
+SELECT * FROM TAB;
+	SELECT 1 FROM EMP; -> Displays 1 for 14 times
+	SELECT "String1" FROM EMP; -> Displays String1 for 14 times
+	DUAL_TABLE -> Dummy Table, It consists of only one column and one record
+	SELECT "String2" FROM DUAL; -> Displays String2 for 1 time
+	SELECT * FROM DUAL;
+	SELECT NULL FROM EMP; -> Displays 14 NULL values
+	SELECT ENAME FROM EMP UNION SELECT NULL FROM EMP; -> Displays 14 names and a NULL value.
+
+JOINS -> It is used to retrieve the data from multiple tables simultaneously and Joins deal with 2 Tables.
+______ 
+
+Types of Joins
+______________
+
+	1. Cartesian Join (or) Cross Join -> All the Records of the Table 1 and Table 2 are merged with each.
+		We get false records as all the Table 1 records are combined all the other Table 2 records.
+		It has 2 SYNTAXES
+
+			1. American National Standard Institute Syntax(ANSI)
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 CROSS JOIN TABLE_NAME_2
+
+					SELECT ENAME, DANAME
+					FROM EMP CROSS JOIN DEPT;
+						All the records of EMP and DEPT are merged with all the records
+
+			2. ORACLE Syntax
+			________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+
+					SELECT ENAME, DNAME
+					FROM EMP, DEPT;
+						All the records of EMP and DEPT are merged with all the records
+
+        2. Inner Join (or) Equi Join -> All the Records of Table 1 and Table 2 are merged with each respective records only.
+		It is used to obtain only the matched records from Table 1 and Table 2.
+		It has 2 SYNTAXES
+		JOIN_CONDITION is the condition where the column names are same
+
+			1. American National Standard Institute Syntax(ANSI) -> FROM, ON, WHERE, SELECT and ON <JOIN_CONDITION> is mandatory
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 INNER JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 INNER JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>
+				WHERE <FILTER_CONDITION>;
+
+					SELECT ENAME, DANAME
+					FROM EMP INNER JOIN DEPT
+					ON EMP.DEPTNO = DEPT.DEPTNO;
+
+					SELECT ENAME, DANAME
+					FROM EMP INNER JOIN DEPT
+					ON EMP.DEPTNO = DEPT.DEPTNO
+					WHERE EMP.SAL > 2000;
+						All the records of EMP and DEPT are merged with all the common records
+
+			2. ORACLE Syntax
+			________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <JOIN_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <FILTER_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <JOIN_CONDITION> AND <FILTER_CONDITIONN>;
+
+					SELECT ENAME, DNAME
+					FROM EMP, DEPT
+					WHERE EMP.DEPTNO = DEPT.DEPTNO;
+
+					SELECT ENAME, DNAME
+					FROM EMP, DEPT
+					WHERE EMP.DEPTNO = EMP.SAL > 2000;
+
+					SELECT ENAME, DNAME
+					FROM EMP, DEPT
+					WHERE EMP.DEPTNO = DEPT.DEPTNO AND EMP.SAL > 2000;
+						All the records of EMP and DEPT are merged with all the common records
+
+	3. Natural Join
+		It has only 1 SYNTAX and It has 2 behaviours
+			If it has a common column in both tables, It acts as Inner Join or Equi Join
+			If it has no common columns between both tables, then it acts as cartesian Join or Cross Join 
+
+			American National Standard Institute Syntax(ANSI)
+			_________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 NATURAL JOIN TABLE_NAME_2
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 NATURAL JOIN TABLE_NAME_2
+				WHERE <FILTER_CONDITION>;
+
+					SELECT ENAME, DANAME
+					FROM EMP NATURAL JOIN DEPT
+
+					SELECT ENAME, DANAME
+					FROM EMP NATURAL JOIN DEPT
+					WHERE EMP.SAL > 2000;
+
+			SELECT *
+			FROM EMP INNER JOIN DEPT
+			ON EMP.DEPTNO = DEPT.DEPTNO; -> Common column is repeated twice
+
+			SELECT *
+			FROM EMP NATURAL JOIN DEPT -> Displays Common column at the beginning
+
+	4. Outer Join 
+		1. Left Outer Join -> It is used to obtain matched records from both the tables and unmatched records from Left Table
+			It has 2 SYNTAXES
+
+			1. American National Standard Institute Syntax(ANSI) -> FROM, ON, WHERE, SELECT and ON <JOIN_CONDITION> is mandatory
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 LEFT [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 LEFT [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>
+				WHERE <FILTER_CONDITION>;
+
+			2. ORACLE Syntax
+			________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE TABLE_NAME_1.COL_NAME = TABLE_NAME_2.COL_NAME (+);
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <FILTER_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <JOIN_CONDITION> AND <FILTER_CONDITIONN>;
+
+
+		2. Right Outer Join -> It is used to obtain matched records from both the tables and unmatched records from Right Table
+			It has 2 SYNTAXES
+
+			1. American National Standard Institute Syntax(ANSI) -> FROM, ON, WHERE, SELECT and ON <JOIN_CONDITION> is mandatory
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 RIGHT [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 RIGHT [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>
+				WHERE <FILTER_CONDITION>;
+
+			2. ORACLE Syntax
+			________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE TABLE_NAME_1.COL_NAME (+) = TABLE_NAME_2.COL_NAME;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE <FILTER_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1, TABLE_NAME_2
+				WHERE TABLE_NAME_1.COL_NAME (+) = TABLE_NAME_2.COL_NAME AND <FILTER_CONDITION>
+
+		3. Full Outer Join -> It is used to obtain matched records and unmatched records from both the tables.
+			It has 1 SYNTAX and it doesn't work in MySQL.
+
+			1. American National Standard Institute Syntax(ANSI) -> FROM, ON, WHERE, SELECT and ON <JOIN_CONDITION> is mandatory
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 FULL [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 FULL [OUTER] JOIN TABLE_NAME_2
+				ON <JOIN_CONDITION>
+				WHERE <FILTER_CONDITION>;
+
+
+				Full Outer Join can be found using Left Join Union Right Join
+					SELECT *
+					FROM EMP, DEPT
+					WHERE EMP.DEPTNO = DEPT.DEPTNO (+)
+					UNION
+					SELECT *
+					FROM EMP, DEPT
+					WHERE EMP.DEPTNO (+) = DEPT.DEPTNO;
+
+	5. Self Join -> It is used for Joining a table by itself is called Self Join (or) Joining the 2 same tables is called Self Join.
+			It is used when the Condition to be selected and Data to be selected are in different Records.
+
+			It has 2 SYNTAXES
+
+			1. American National Standard Institute Syntax(ANSI) -> FROM, ON, WHERE, SELECT and ON <JOIN_CONDITION> is mandatory
+			____________________________________________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 T1 JOIN TABLE_NAME_1 T2
+				ON T1.COL_NAME = T2.COL_NAME;;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 T1 JOIN TABLE_NAME_1 T2
+				ON T1.COL_NAME = T2.COL_NAME;;
+				WHERE <FILTER_CONDITION>;
+
+			2. ORACLE Syntax
+			________________
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 T1, TABLE_NAME_1 T2
+				WHERE T1.COL_NAME = T2.COL_NAME;
+
+				SELECT */ COL_NAME/ EXPRESSION
+				FROM TABLE_NAME_1 T1, TABLE_NAME_1 T2
+				WHERE T1.COL_NAME = T2.COL_NAME AND <FILTER_CONDITION>;
+
+
+			Unmatched Records from 2 tables an be found using
+				1. Left Join Union Right Join Minus Inner Join
+					SELECT *
+ 					FROM EMP, DEPT
+					WHERE EMP.DEPTNO = DEPT.DEPTNO (+)
+ 					UNION
+ 					SELECT *
+ 					FROM EMP, DEPT
+ 					WHERE EMP.DEPTNO (+) = DEPT.DEPTNO
+ 					MINUS
+ 					SELECT *
+ 					FROM EMP, DEPT
+ 					WHERE EMP.DEPTNO = DEPT.DEPTNO
+
+				2. Selecting rows where MGR is NULL or ENAME is NULL
+				SELECT *
+				FROM EMP FULL JOIN DEPT
+				ON DEPT.DEPTNO = EMP.DEPTNO
+				WHERE ENAME IS NULL OR DNAME IS NULL;
+
+				SELECT E1.ENAME EMP,E2.ENAME MGRS
+				FROM EMP E1,EMP E2
+				WHERE E1.MGR = E2.EMPNO;
+
+Joining Multiple Tables -> IN NOTES
+_______________________
+
+SQL> SELECT E1.ENAME, D1.DNAME, E2.ENAME, D2.DNAME, E3.ENAME, D3.LOC
+  2  FROM EMP E1, DEPT D1, EMP E2, DEPT D2, EMP E3, DEPT D3
+  3  WHERE E1.DEPTNO = D1.DEPTNO AND E2.DEPTNO = D2.DEPTNO AND E1.MGR = E2.EMPNO AND E2.MGR = E3.EMPNO AND 
+  4  E3.DEPTNO = D3.DEPTNO AND E1.HIREDATE BETWEEN '01-JAN-80' AND '31-DEC-83' AND E2.SAL > E1.SAL
+  5  AND D3.LOC LIKE '%A%';
+
+Co-Related Sub Query
+_____________________
+Here Always Outer Query runs first and then Sub Query.
+A Query which is written inside another Query, but here Outer Query and Inner Query are interdependent on each other. 
+Here Outer Query is executed 2 times.
+
+	Working Principle of Co-Related Sub Query
+        -----------------------------------------
+	1. Outer Query always executes 1st and gives partial output.
+	2. This partial output is passes as input to the Inner Query
+	3. Using this input, Inner Query executes and gives half of the output.
+	4. Again this half output is given as input to the Outer Query.
+	5. Using this input Outer Query executes again and gives the complete result.
+
+	Note: Co-Relate Sub Query works on the principles of both Sub Queries as well as Joins.
+
+		1. Co-Related Sub Query
+		SELECT DNAME
+		FROM DEPT
+		WHERE DEPTNO IN (
+				SELECT DEPTNO
+				FROM EMP
+				WHERE EMP.DEPTNO = DEPT.DEPTNO);
+
+		2. Sub Query
+ 		SELECT DNAME 
+		FROM EMP
+		WHERE DEPTNO IN (
+				SELECT DEPTNO
+				FROM  EMP);
+
+	To find Nth Max Salary we can use Co-Related Sub Query.
+		SELECT DISTINCT SAL, E1.SAL
+		FROM EMP E1
+		WHERE 8 = (
+			SELECT COUNT(DISTINCT SAL)
+			FROM EMP E2
+			WHERE E1.SAL <= E2.SAL );
+
+UPDATE TABLE_NAME
+SET COL_NAME = VALUE
+WHERE <FILTER_CONDITION>
+COMMIT

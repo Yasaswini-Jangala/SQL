@@ -1,0 +1,145 @@
+ATTRIBUTES ->  Properties of a Table
+----------
+	Types of Attributes
+	-------------------
+	1. Key Attributes -> Attributes which helps to find the object uniquely.
+	2. Non Key Attributes -> All the attributes other than Key Attributes.
+	3. Prime Key Attributes -> Among all the Key Attributes, if you choose any one Attribute.
+	4. Non Prime Key Attributes -> All the Key Attributes other than Prime Key Attributes.
+	5. Composite Key Attributes -> Combination of 2 or more Non Key Attributes to identify the Object uniquely.
+	6. Super Key Attributes -> Set of all the Key Attributes.
+	7. Foreign Key Attributes -> Attributes that we derive from other Tables.
+		
+
+FUNCTIONAL DEPENDENCY -> If an attribute in a Relation determines another attribute, then it is called Functional Dependency
+---------------------
+	Types of Attributes
+	-------------------
+	1. Total Functional Dependency -> When all the Attributes depend on a Single Attribute (or) Key Attribute.
+	2. Partial Functional Dependency -> When there exists a Dependency such that a part of a Composite Key Attribute Determines another Attribute.
+	3. Transitive Functional Dependency -> When In the presence of a Key Attribute,if a Non Key Attribute determines another Non Key Attributes.
+
+  SQL>  SELECT CONCAT(SUBSTR('APPLE', -LENGTH('APPLE'), 1),
+    1	REPLACE('APPLE', SUBSTR('APPLE', 1, LENGTH(
+    2	FROM DUAL
+
+NORMALISATION -> Reducing Larger Tables to several Smaller Tables in order to avoid or remove Redundancies and Anomalies.
+-------------
+	1. 1NF First Normal Form -> If a Table wants to be in 1NF, it show follow
+		1. No multi valued data
+		2. No duplicate records
+	2. 2NF Second Normal Form -> If a Table wants to be in 2NF, it show follow
+		1. The Table must be in 1NF
+		2. There should be no Partial Functional Dependency, by Splitting the Tables we can make it 2NF.
+	3. 3NF Third Normal Form -> If a Table wants to be in 3NF, it show follow
+		1. The Table must be in 2NF
+		2. There should be no Transitive Functional Dependency, by Splitting the Tables we can make it 3NF 
+			If a Table is in 3NF, then it is called Normalised Table.
+	4. BCNF Boyce Codd Normal Form -> If a Table wants to be in 1NF, it show follow
+		1. The Table must be in 3NF
+		2. 
+	5. 4NF Fourth Normal Form -> If a Table wants to be in 1NF, it show follow
+		1. The Table must be in BCNF
+		2. 
+	6. 5NF Fifth Normal Form -> If a Table wants to be in 1NF, it show follow 
+		1. The Table must be in 4NF
+		2. 
+
+SQL RULES FOR WRINTING SQL STATEMENTS
+-------------------------------------
+	1. SQL keywords are not CASE sensitive
+	2. Statements should end with ;
+	3. String literals must be enclosed in ''
+	4. Identifiers should begin with Alphabets only, '_' are used, not be SQL Table
+	5. Use Consistent Formatting for Readability
+	6. Avoid Ambiguity in Joins
+	7. Avoid using * for unnecessary things
+	8. Sub Queries must be Properly Enclosed
+	9. Columns existing in GROUP BY clause must only be in the SELECT clause or in GROUP functions. 
+	10. SQL statements are executed in logical order.
+
+SQL> SELECT ENAME, LEVEL
+  2  FROM EMP
+  3  START WITH MGR IS NULL
+  4  CONNECT BY PRIOR EMPNO = MGR;
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  CONNECT BY PRIOR MGR = EMPNO
+
+SQL> SELECT ENAME
+  2  FROM (SELECT ENAME,LEVEL L FROM EMP CONNECT BY PRIOR EMPNO = MGR)
+  3  WHERE L = 2
+			
+		CONNECT BY clause is important for START WITH clause and CONNECT BY is used to display data in the hierarchical order
+
+DATABASE OBJECTS -> They make execution faster
+----------------
+	1. VIEWS -> It is used for dealing with Virtual Tables, They store result of a Query
+		If we update data in VIEWS then Original Table is also updated.
+		If we update data in Original Table then VIEW is also updated.
+		Views are not Auto-Commit and we can store particular Columns
+
+		1. CREATE VIEW VIEW_NAME
+		AS SELECT_QUERY;
+			CREATE VIEW V1 AS
+			SELCT *
+			FROM EMP; 
+
+		2. SELECT * FROM VIEW_NAME;
+
+		3. UPDATE VIEW_NAME
+		SET SAL = VALUE
+		WHERE <FILTER_CONDITION>;
+
+		4. DROP VIEW VIEW_NAME;
+			
+	2. INDEX -> It is a Data base Object which makes data retrieval faster and easy access
+	B-TREE INDEX and BITMAP INDEX
+		INDEXES are created on COL_NAME
+		1. CREATE INDEX INDEX_NAME
+		   ON TABLE_NAME(COL_NAME_1, COL_NAME_2, ....., COL_NAME_N)
+
+		To copy details from one Table to Another Table
+		2. CREATE TABLE TABLE_NAME2 AS
+		   SELECT *
+		   FROM TABLE_NAME1;
+
+		To copy structure from one Table to Another Table, Constraints are not copied
+		3. CREATE TABLE TABLE_NAME2  AS
+		   SELECT * FROM TABLE_NAME1
+		   WHERE <FILTER_CONDITION_IS_ALWAYS_FALSE>
+
+		4. SELECT ROWID, TABLE_NAME.*
+		   FROM TABLE_NAME;
+
+		B-TREE INDEX
+		------------
+		1. It uses B-Tree for faster retrieval
+		2. It also saves the Row-Ids	
+
+		BITMAP INDEX
+		------------
+		1. It will store binary's (0 or 1)
+		2. It will make columns for each binary value.
+		
+	3. SYNONYMS -> It is used for creating a Table with a permanent shortcut name
+		If we update data in SYNONYM then Original Table is also updated.
+		If we update data in Original Table then SYNONYM is also updated.
+
+		1. CRETE SYNONYM SYNONYM_NAME
+		   FOR TABLE_NAME;
+
+		2. UPDATE SYNONYM_NAME
+		   SET COL_NAME = VALUE
+		   WHERE <FILTER_CONDITION>
+
+	4. SEQUENCE -> It is a Data Base Object, It is used for creating Sequence numbers 
+		
+		1. CRETE SEQUENCE SEQUENCE_NAME
+		   START WITH VALUE_1 INCREMENT BY VALUE_2;
+
+		2. INSERT INTO TABLE_NAME VALUES
+			(
+			SEQUENCE_NAME.NEXTVALUE, '&STRING_COL_NAME', &INTEGER_COL_NAME
+			);

@@ -1,0 +1,165 @@
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE EMPNO = (
+  4      SELECT MGR
+  5      FROM EMP
+  6      WHERE ENAME = 'SMITH'
+  7  );
+
+ENAME                                                                           
+----------                                                                      
+FORD                                                                            
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE EMPNO = (
+  4      SELECT MGR
+  5      FROM EMP
+  6      WHERE EMPNO = (
+  7          SELECT MGR
+  8          FROM EMP
+  9          WHERE ENAME = 'ADAMS'
+ 10      )
+ 11  );
+
+ENAME                                                                           
+----------                                                                      
+JONES                                                                           
+
+SQL> SELECT DNAME
+  2  FROM DEPT
+  3  WHERE DEPTNO = (
+  4      SELECT DEPTNO
+  5      FROM EMP
+  6      WHERE EMPNO = (
+  7          SELECT MGR
+  8          FROM EMP
+  9          WHERE ENAME = 'JONES'
+ 10      )
+ 11  );
+
+DNAME                                                                           
+--------------                                                                  
+ACCOUNTING                                                                      
+
+SQL> SELECT SAL
+  2  FROM EMP
+  3  WHERE EMPNO = (
+  4      SELECT MGR
+  5      FROM EMP
+  6      WHERE ENAME = 'MILLER'
+  7  );
+
+       SAL                                                                      
+----------                                                                      
+      2450                                                                      
+
+SQL> SELECT LOC
+  2  FROM DEPT
+  3  WHERE DEPTNO = (
+  4      SELECT DEPTNO
+  5      FROM EMP
+  6      WHERE EMPNO = (
+  7          SELECT MGR
+  8          FROM EMP
+  9          WHERE EMPNO = (
+ 10              SELECT MGR
+ 11              FROM EMP
+ 12              WHERE ENAME = 'SMITH'
+ 13          )
+ 14      )
+ 15  );
+
+LOC                                                                             
+-------------                                                                   
+DALLAS                                                                          
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MGR IN (
+  4      SELECT EMPNO
+  5      FROM EMP
+  6      WHERE ENAME = 'BLAKE'
+  7  );
+
+ENAME                                                                           
+----------                                                                      
+ALLEN                                                                           
+WARD                                                                            
+MARTIN                                                                          
+TURNER                                                                          
+JAMES                                                                           
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE MGR IN (
+  4      SELECT EMPNO
+  5      FROM EMP
+  6      WHERE ENAME = 'KING'
+  7  );
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE MGR IN (
+  4      SELECT EMPNO
+  5      FROM EMP
+  6      WHERE ENAME = 'JONES'
+  7  );
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MGR IN (
+  4      SELECT EMPNO
+  5      FROM EMP
+  6      WHERE MGR = (
+  7          SELECT MGR
+  8          FROM EMP
+  9          WHERE ENAME = 'BLAKE'
+ 10      )
+ 11  );
+
+ENAME                                                                           
+----------                                                                      
+ALLEN                                                                           
+WARD                                                                            
+MARTIN                                                                          
+SCOTT                                                                           
+TURNER                                                                          
+JAMES                                                                           
+FORD                                                                            
+MILLER                                                                          
+
+8 rows selected.
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE MGR = (
+  4      SELECT MGR
+  5      FROM EMP
+  6      WHERE EMPNO = (
+  7          SELECT MGR
+  8          FROM EMP
+  9          WHERE ENAME = 'FORD'
+ 10      )
+ 11  );
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> spool end

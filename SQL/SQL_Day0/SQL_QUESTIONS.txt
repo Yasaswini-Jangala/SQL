@@ -1,0 +1,1092 @@
+------------------------------------------------------------------------------------------------------
+🔹 1. EMP and DEPT Table
+List all employees with their department names.
+
+Display employee names and their corresponding department locations.
+
+Show all departments that have no employees.
+
+Find the total number of employees in each department.
+
+List employees who work in the same department as 'SMITH'.
+
+Display department names along with the highest salary in each.
+
+Find departments where the average salary exceeds 3000.
+
+List employees who joined before their department's manager.
+
+Show departments with more than two employees.
+
+Display employees whose department location is 'NEW YORK'.
+
+List all employees along with their department numbers and names.
+
+Find departments that have at least one employee with a commission.
+-----------------------------------------------------------
+Display the names of employees and their department's location.
+
+List departments where no employee earns more than 2000.
+
+Show the total salary paid to employees in each department.
+
+Find departments where the minimum salary is less than 1000.
+
+List employees and their department names, ordered by department name.
+
+Display departments along with the number of employees in each.
+
+Find departments where all employees are managers.
+
+List departments that have employees with the job title 'CLERK'.
+
+------------------------------------------------------------------------------------------------------
+🔹 2. FROM Clause
+Retrieve all columns from the EMP table.
+
+Select employee names and job titles from the EMP table.
+
+Display department names and locations from the DEPT table.
+
+List employee names and their corresponding department names.
+
+Show employee names, job titles, and department locations.
+
+Retrieve employee names and salaries for all employees.
+
+Display the names of all departments.
+
+List all employees along with their hire dates.
+
+Show employee names and their managers' names.
+
+Display employee names and their department numbers.
+-----------------------------------------------------------
+Retrieve job titles and the number of employees for each job.
+
+List all departments and the number of employees in each.
+
+Show employee names and their commission amounts.
+
+Display employee names and their salaries, ordered by salary.
+
+List employee names and their job titles, ordered by job title.
+
+Retrieve department names and the number of employees in each.
+
+Show employee names and their department names, ordered by department name.
+
+Display employee names and their hire dates, ordered by hire date.
+
+List employee names and their salaries, ordered by descending salary.
+
+Retrieve all columns from both EMP and DEPT tables.
+
+------------------------------------------------------------------------------------------------------
+🔹 3. WHERE Clause
+List employees who earn more than 3000.
+
+Find employees who work in department 10.
+
+Display employees hired after '01-JAN-81'.
+
+Show employees with the job title 'MANAGER'.
+
+List employees who do not receive a commission.
+
+Find employees whose salary is between 1000 and 2000.
+
+Display employees whose names start with 'S'.
+
+List employees who work in departments located in 'DALLAS'.
+
+Show employees who were hired in the year 1981.
+
+Find employees with a salary less than 1500.
+-----------------------------------------------------------
+Display employees who have a commission greater than 500.
+
+List employees whose job title is not 'CLERK'.
+
+Find employees who work in department 20 or 30.
+
+Show employees whose names end with 'N'.
+
+List employees who were hired before '01-JAN-82'.
+
+Find employees with a salary equal to 1600.
+
+Display employees who have a commission.
+
+List employees whose names contain the letter 'A'.
+
+Show employees who work in departments other than 10.
+
+Find employees hired on '17-DEC-80'.
+
+------------------------------------------------------------------------------------------------------
+🔹 4. EXPRESSIONS
+Display employee names and their annual salary (sal * 12).
+
+Show employee names and their salary increased by 10%.
+
+List employee names and the difference between their salary and 3000.
+
+Display employee names and double their salary.
+
+Show employee names and half of their salary.
+
+List employee names and their salary after deducting 500.
+
+Display employee names and their salary multiplied by 1.15.
+
+Show employee names and their salary divided by 2.
+
+List employee names and their salary plus commission.
+
+Display employee names and their salary minus commission.
+-----------------------------------------------------------
+Show employee names and the square of their salary.
+
+List employee names and their salary modulo 1000.
+
+Display employee names and their salary rounded to the nearest hundred.
+
+Show employee names and their salary truncated to the nearest hundred.
+
+List employee names and their salary converted to a different currency.
+
+Display employee names and their salary as a percentage of 5000.
+
+Show employee names and their salary increased by 20%, then decreased by 10%.
+
+List employee names and their salary after tax deduction of 15%.
+
+Display employee names and their salary in thousands.
+
+Show employee names and their salary in lakhs.
+
+------------------------------------------------------------------------------------------------------
+🔹 5. LOGICAL OPERATORS
+List employees who earn more than 2000 and work in department 10.
+
+Find employees who are 'MANAGER' or 'CLERK'.
+
+Display employees who are not 'SALESMAN'.
+
+Show employees who earn between 1000 and 3000 and are in department 20.
+
+List employees who are not in department 30 and earn less than 2000.
+
+Find employees who are 'ANALYST' and earn more than 3000.
+
+Display employees who are not 'MANAGER' and not in department 10.
+
+Show employees who are 'CLERK' or earn more than 2500.
+
+List employees who are not 'SALESMAN' and earn less than 1500.
+
+Find employees who are in department 20 or 30 and earn more than 2000.
+-----------------------------------------------------------
+Display employees who are not in department 10 and not 'CLERK'.
+
+Show employees who are 'MANAGER' and earn between 2000 and 3000.
+
+List employees who are not 'ANALYST' or earn more than 3000.
+
+Find employees who are 'CLERK' and not in department 20.
+
+Display employees who are not 'SALESMAN' and earn more than 1500.
+
+Show employees who are in department 30 and not 'CLERK'.
+
+List employees who are 'MANAGER' or 'ANALYST' and earn more than 2500.
+
+Find employees who are not 'CLERK' and earn between 1000 and 2000.
+
+Display employees who are in department 10 or 20 and not 'SALESMAN'.
+
+Show employees who are not 'MANAGER' and earn less than 3000.
+
+------------------------------------------------------------------------------------------------------
+🔹 6. MULTI ROW FUNCTIONS (GROUP FUNCTIONS)
+Find the average salary of all employees.
+
+Display the maximum salary in the company.
+
+Show the minimum salary from the EMP table.
+
+Count the total number of employees.
+
+Find the sum of all salaries.
+
+Find the average commission of employees.
+
+Count the number of employees in department 20.
+
+Display the highest commission given.
+
+Show the number of different job roles.
+
+Display the average salary of employees who receive commission.
+-----------------------------------------------------------
+Show the total number of employees who earn more than 2000.
+
+Find the sum of salaries for department 10.
+
+Show the minimum hire date.
+
+Find the total commission earned by all employees.
+
+Count how many employees have commission.
+
+Show the average salary of managers.
+
+Find the total number of departments.
+
+Display total salary and average salary department-wise.
+
+Count the number of employees without commission.
+
+Find the maximum, minimum, and average salary in one query.
+
+------------------------------------------------------------------------------------------------------
+🔹 7. SPECIAL OPERATORS (IN, BETWEEN, LIKE, IS NULL)
+List employees whose job is either 'CLERK', 'MANAGER', or 'ANALYST'.
+
+Display employees with salary between 2000 and 3000.
+
+Find employees whose name starts with 'A'.
+
+Show employees whose name ends with 'S'.
+
+Display employees whose name contains 'AR'.
+
+List employees who do not belong to department 10 or 30.
+
+Find employees whose commission is NULL.
+
+Show employees whose job title is NOT 'SALESMAN'.
+
+List employees with a hire date in 1981.
+
+Show employees with a name of exactly 5 characters.
+
+Find employees whose name starts with 'S' and ends with 'H'.
+
+Display employees whose job is in ('CLERK', 'SALESMAN').
+
+Find employees whose salary is not between 1500 and 3000.
+
+Show employees who joined on '17-DEC-80'.
+
+List employees with a NULL commission and salary > 1500.
+
+Display employees whose job does not contain the letter 'A'.
+
+Find employees whose name contains exactly 6 letters.
+
+Show employees whose name has second letter 'M'.
+
+List employees whose job starts with 'S' or 'A'.
+
+Find employees not in department 10, 20, or 30.
+
+------------------------------------------------------------------------------------------------------
+🔹 8. GROUP BY Clause
+Show total salary for each department.
+
+Count employees in each department.
+
+Find maximum salary in each job group.
+
+Display average salary for each job type.
+
+Find total commission per department.
+
+Show job-wise total salary.
+
+Count how many managers each department has.
+
+List total salary by department and job.
+
+Show average salary per department with more than 2 employees.
+
+Count how many employees earn commission per job.
+
+Find highest salary for each manager (use MGR column).
+
+Display department-wise employee count sorted by department.
+
+Group employees by hire year and show count.
+
+Count employees by job where salary > 2000.
+
+Find sum of salaries of each job in department 10.
+
+Group by job and show average, max, min salaries.
+
+Show job-wise total commission where commission is not null.
+
+Count how many departments have more than 3 employees.
+
+Show total salary per department where department has clerks.
+
+Group employees by job and list total number of employees.
+
+------------------------------------------------------------------------------------------------------
+🔹 9. HAVING Clause
+Show departments with more than 3 employees.
+
+Find jobs with average salary > 2000.
+
+Show departments with total salary > 9000.
+
+Display jobs where number of employees is more than 2.
+
+Show job-wise employee count only if more than 1 clerk exists.
+
+List departments where the minimum salary is above 1500.
+
+Show departments where average commission is not null.
+
+List job titles having total commission > 1000.
+
+Show departments with maximum salary above 3000.
+
+Display departments with more than 1 manager.
+
+Show job titles where total salary is below 5000.
+
+Display job titles where average salary is between 2000 and 4000.
+
+Find departments with at least one employee earning over 5000.
+
+Show department-wise total salary, only if more than 2 employees.
+
+Display jobs having total salary more than 6000.
+
+List departments where total commission is null.
+
+Show departments with average salary not between 1000 and 3000.
+
+Show jobs having max salary less than 3000.
+
+Display departments with both 'CLERK' and 'MANAGER' roles.
+
+Find departments where number of job types > 2.
+
+------------------------------------------------------------------------------------------------------
+🔹 10. ORDER BY Clause
+List all employees ordered by salary ascending.
+
+Display employees ordered by salary descending.
+
+Show employees ordered by hire date ascending.
+
+List employees ordered by name alphabetically.
+
+Display employees sorted by job, then salary.
+
+Show employees sorted by department number and hire date.
+
+List employees ordered by commission descending.
+
+Show employees ordered by job and then name.
+
+Display employees in reverse alphabetical order of name.
+
+List employees sorted by hire year.
+
+Show employees ordered by job and descending salary.
+
+List employees ordered by length of name.
+
+Display employees ordered by salary modulus 1000.
+
+Show employees sorted by hire month.
+
+List employees ordered by the last letter of their name.
+
+Display employees sorted by commission (nulls last).
+
+Show employees ordered by salary divided by 100.
+
+List employees ordered by hire date, then by name.
+
+Display employees ordered by total earnings (salary + commission).
+
+List employees sorted by job, department, then hire date.
+
+------------------------------------------------------------------------------------------------------
+🔹 11. SUB QUERY – CASE 1 (Single-row subquery)
+Find employees earning more than the average salary.
+
+Display employees with the same job as ‘FORD’.
+
+Show employees who earn the same salary as employee ‘SMITH’.
+
+List the department number of the employee with the highest salary.
+
+Show the name of the employee who earns the minimum salary.
+
+Display the details of the employee who joined last.
+
+List employees who joined after the person with the earliest hire date.
+
+Show employees whose job is the same as that of ‘MILLER’.
+
+Find the job of the employee with the highest commission.
+
+Display the name of the manager who has the lowest paid subordinate.
+
+Show employee(s) whose salary is equal to that of any employee in department 10.
+
+Find employees who earn less than the highest paid ‘CLERK’.
+
+Display the details of employees who have the same manager as ‘ALLEN’.
+
+Find employees whose job is the same as the employee with empno 7698.
+
+Show details of employees earning less than the average salary of department 20.
+
+List employees hired before ‘BLAKE’.
+
+Display the name of the department where ‘SCOTT’ works.
+
+Show all employees except the one who earns the maximum salary.
+
+Display employees whose salary is equal to the second highest salary.
+
+List employees earning more than the salary of employee with empno 7788.
+
+------------------------------------------------------------------------------------------------------
+🔹 12. SUB QUERY – CASE 2 (Multi-row subquery)
+Find employees working in the same department as ‘SCOTT’.
+
+Show employees whose salary is greater than any clerk’s salary.
+
+Display employees whose salary is less than all managers’ salaries.
+
+List employees working in departments where 'SALESMAN' works.
+
+Show employees who joined on the same date as someone in department 20.
+
+Display employees with salary equal to anyone from department 30.
+
+Find employees who work under the same manager as anyone in department 10.
+
+List employees who joined on dates already seen in the EMP table.
+
+Show employees who belong to departments with more than one employee.
+
+Display employees whose job exists more than once in the EMP table.
+
+List all employees who joined before any manager.
+
+Display employees whose salary is less than the maximum salary in each department.
+
+List employees whose salary is not equal to any in department 30.
+
+Show employees working under managers who manage more than one employee.
+
+List employees who are not in the department of any manager.
+
+Find employees with salaries matching those of at least two other employees.
+
+Display all employees who joined in a month where more than one employee joined.
+
+List employees working in departments where the average salary is more than 2000.
+
+Find employees who have the same job as employees in other departments.
+
+Display employees whose manager has a clerk in their team.
+
+------------------------------------------------------------------------------------------------------
+🔹 13. SUB QUERY – COMBINED CASE 1 and 2
+Show employees earning more than the average salary of each department.
+
+Find employees who earn the same as someone in department 20 but not in department 30.
+
+List employees whose salary equals the second highest salary using subquery inside subquery.
+
+Show employees hired before the employee with the second earliest hire date.
+
+Find employees who have the same job as the person with max salary.
+
+Display employees who earn more than some clerk but less than some salesman.
+
+Show departments where more than 3 employees earn above the department’s average.
+
+List names of employees who work under a manager who earns more than 3000.
+
+Find employees with salary between average and maximum salary in their department.
+
+Show employees whose salary is greater than the salary of ‘WARD’ but less than ‘FORD’.
+
+Display employees whose salary equals the salary of someone hired after 01-JAN-82.
+
+Show employees who earn more than the employee with empno 7369 but less than empno 7499.
+
+List employees hired after the employee with second highest salary.
+
+Show employees earning more than at least one employee in each department.
+
+List employees who are in the same job and department as someone with commission.
+
+Find employees who do not belong to any department where an employee earns over 3000.
+
+Show employees who have same job as one of the top 3 earners.
+
+Display employees who earn the exact average salary of the company.
+
+Show employees whose manager is the highest paid employee.
+
+Find employees who belong to the department of the employee hired last.
+
+------------------------------------------------------------------------------------------------------
+🔹 14. INNER QUERIES – CASE 1 (Used in WHERE or SELECT)
+Display employees working in departments located in ‘DALLAS’.
+
+Show names of employees who joined before the manager of ‘ALLEN’.
+
+List job titles of employees who have a salary greater than average.
+
+Find employee names and their department names.
+
+Show names of employees who earn less than the manager of department 20.
+
+Display employee names who work in departments where average salary > 2000.
+
+List employees who joined after the person earning the minimum salary.
+
+Find job titles of people earning more than 2500 and hired in 1981.
+
+Show employees whose department name is ‘RESEARCH’.
+
+List employees whose salary is greater than average salary of their department.
+
+Show employees who share the same job as the top earner in department 10.
+
+Display employee name, salary, and department location.
+
+List employee names whose manager has job = 'MANAGER'.
+
+Show employees hired after the person with hiredate = '09-JUN-81'.
+
+Display all employees with job same as any employee in dept 20.
+
+Show employees earning more than the total salary of dept 10.
+
+Find employee names working in a department with location = 'NEW YORK'.
+
+Display all employees who joined before anyone in dept 30.
+
+Show names of employees with salary less than average salary of department 30.
+
+Find employee names where their manager earns less than they do.
+
+------------------------------------------------------------------------------------------------------
+🔹 15. INNER QUERIES – CASE 2 (Used in FROM)
+List employee name and rank based on salary (using subquery with ROWNUM).
+
+Show department-wise average salary using subquery in FROM.
+
+Display top 3 highest earners using subquery in FROM clause.
+
+Display department name and total salary using subquery.
+
+Show job and number of employees per job using subquery alias.
+
+List employees who earn more than department average (FROM subquery).
+
+Show jobs sorted by total salary (use subquery to get total salary).
+
+Display employee names whose salary is above average (FROM subquery).
+
+Show employee details and dept names using subquery join in FROM.
+
+Create a virtual table of emp details with 10% bonus and display.
+
+List top 5 oldest employees using subquery sorted by hiredate.
+
+Display number of employees hired per year using subquery.
+
+Show employee with highest commission using subquery in FROM.
+
+Display department and average hire year of employees.
+
+Show job-wise commission totals using FROM subquery.
+
+Show department and number of clerks using FROM subquery.
+
+Display salary range (max-min) for each department.
+
+List employee name and total salary (salary + comm).
+
+Find departments with average salary > 2000 using FROM subquery.
+
+Show names of employees whose dept average salary is highest.
+
+------------------------------------------------------------------------------------------------------
+🔹 16. TYPES OF SUBQUERIES
+Write a scalar subquery to get the employee name with the highest salary.
+
+Use a single-row subquery to display employees earning more than the average salary.
+
+Use a multi-row subquery to list employees with salary equal to any employee in department 30.
+
+Write a correlated subquery to find employees whose salary is greater than the average of their department.
+
+Use a nested subquery to display the second highest salary.
+
+Write a non-correlated subquery to get department names for employees.
+
+Use an IN subquery to list employees in departments with more than 3 employees.
+
+Use an ANY subquery to find employees earning more than any manager.
+
+Use an ALL subquery to find employees earning more than all salesmen.
+
+Use a subquery in SELECT to show each employee’s department name.
+
+Use a subquery in FROM to rank employees by salary.
+
+Use a subquery in WHERE to get employees hired before the person earning the highest salary.
+
+Use a scalar subquery to return the job title of the lowest paid employee.
+
+Use a multi-column subquery to compare both job and deptno.
+
+Use a subquery with NOT IN to show employees not in department 20.
+
+Use an EXISTS subquery to find employees in departments with more than 2 members.
+
+Use a correlated subquery to count employees earning more than their manager.
+
+Use a subquery inside CASE to show high/low salary based on average.
+
+Use a subquery in HAVING to filter departments by average salary.
+
+Use a subquery with UNION to list all unique job titles from two departments.
+
+------------------------------------------------------------------------------------------------------
+🔹 17. EMP and MANAGER RELATIONSHIP
+List all employees with their manager's name.
+
+Show employees who are managers.
+
+Display all employees who do not have a manager.
+
+Find the manager of ‘FORD’.
+
+List employees who report to the same manager as ‘ALLEN’.
+
+Display employees along with their manager’s job.
+
+Find employees who are managers and their subordinates.
+
+Show manager name and count of subordinates.
+
+Display employees who earn more than their manager.
+
+List managers whose subordinates earn more than 2000.
+
+Find the name of the top-most manager.
+
+Show all employees with their manager’s salary.
+
+List managers who are managing more than 2 employees.
+
+Show managers and the average salary of their subordinates.
+
+Find employees who do not report to a manager in the same department.
+
+Show employees who joined before their manager.
+
+Display the hiredate of each employee and their manager.
+
+Show employees and the number of employees under the same manager.
+
+Find managers whose salary is less than the average of their subordinates.
+
+Show employee-manager pairs with the same job.
+
+------------------------------------------------------------------------------------------------------
+🔹 18. MIN and MAX
+Display the employee with the minimum salary.
+
+Show the highest paid employee’s name and salary.
+
+Find the employee with the earliest hire date.
+
+Find the department with the maximum total salary.
+
+Show the job with the highest number of employees.
+
+Display employee(s) earning the minimum salary in each department.
+
+Find the department with the highest number of employees.
+
+Show the employee(s) who joined most recently.
+
+Find employees with the maximum commission.
+
+List all employees earning the same as the highest paid employee.
+
+Show the earliest join date in each department.
+
+Find employees who earn the minimum salary in their job.
+
+Display max, min salary and their difference for each job.
+
+Show the manager earning the most.
+
+Find department with the oldest employee.
+
+Display employees with maximum and minimum hire dates.
+
+Find the max, min salary for each department.
+
+Show the department with the latest joiners.
+
+Display employee whose commission is maximum among all clerks.
+
+Show the second highest salary using subquery with MIN/MAX.
+
+------------------------------------------------------------------------------------------------------
+🔹 19. NESTED SUBQUERIES
+Display the second highest salary using nested subquery.
+
+Find employees who earn more than the average salary of employees who joined before 1981.
+
+Show employees who earn the same as the employee with the second minimum hire date.
+
+Find employees whose salary equals max salary of the department with the most employees.
+
+Show departments where the top paid employee earns more than 5000.
+
+List jobs for which the average salary is greater than average salary of clerks.
+
+Find employees who earn more than the top 3 earners’ average.
+
+List employees whose hiredate is before the earliest hiredate in department 30.
+
+Show employees who earn more than the employee who joined last in department 10.
+
+Display the employee whose salary is just below the maximum salary.
+
+Show the job that has the second lowest average salary.
+
+List employees with salary between second lowest and second highest.
+
+Find the department with the highest average commission.
+
+List employee name and their job where job has the most employees.
+
+Show departments with more than average number of managers.
+
+Find employee with max salary among those with min commission.
+
+Show employee who joined after the person with the latest join date in department 20.
+
+Display name and dept of employee who joined just before ‘MILLER’.
+
+Show job title with the most total salary.
+
+Find the manager who manages the highest number of employees.
+
+------------------------------------------------------------------------------------------------------
+🔹 20. CROSS JOIN
+Perform a cross join between EMP and DEPT tables.
+
+List all possible employee-department combinations.
+
+Show cross join of job titles and department names.
+
+Display all employee and department pairs even if unrelated.
+
+List all possible manager-employee pairs using cross join.
+
+Find combinations of departments and employees where empno is even.
+
+Cross join EMP table with itself and show emp and manager combos.
+
+Show total number of rows after EMP × DEPT cross join.
+
+Use cross join to simulate a cartesian product of EMP and JOB.
+
+Show all combinations of employee names and department locations.
+
+Cross join EMP with a table containing values (e.g. SELECT 1, 2, 3).
+
+Cross join to display all job-department pairs.
+
+List all possible combinations of two employees.
+
+Cross join EMP with (SELECT SYSDATE FROM DUAL) to show current date per employee.
+
+Combine all employee and job title permutations.
+
+Cross join departments with each year from 1980 to 1985.
+
+Cross join to count how many combinations exist.
+
+Cross join and filter results using WHERE clause on salary.
+
+Cross join EMP and DEPT and group by department.
+
+Display all combinations of employees with departments located in ‘CHICAGO’.
+
+------------------------------------------------------------------------------------------------------
+🔹 21. INNER JOIN
+List all employees with their department names using INNER JOIN.
+
+Show employee name, job, and department location.
+
+Display all employees working in ‘NEW YORK’.
+
+List employees with their manager’s name using INNER JOIN.
+
+Show employees with department number and department name.
+
+List employee names and department locations, only if the department exists.
+
+Display employees working in departments with a location that starts with 'D'.
+
+List employee name and department name for those hired in 1981.
+
+List employee job and department name using INNER JOIN.
+
+Display department name and number of employees in each using JOIN and GROUP BY.
+
+Show departments which have more than 2 employees using JOIN.
+
+Use INNER JOIN to display the salary of employees and their department name.
+
+Show employees who work in the same location as ‘SCOTT’.
+
+List all employees whose department location is ‘CHICAGO’.
+
+Show employee details for employees working in department 10.
+
+Join EMP and DEPT and list employees sorted by department location.
+
+Use INNER JOIN to list employees with department location containing ‘O’.
+
+Display employee details where department name ends with ‘S’.
+
+Show employee name and department name where department number is less than 30.
+
+Use INNER JOIN with WHERE clause to display employees earning more than 2000.
+
+------------------------------------------------------------------------------------------------------
+🔹 22. NATURAL JOIN
+Use NATURAL JOIN to list employees with their department details.
+
+Show employee name and department location using NATURAL JOIN.
+
+List all employees working in ‘DALLAS’ using NATURAL JOIN.
+
+Display job and department name for all employees using NATURAL JOIN.
+
+Show all department names with employees.
+
+Use NATURAL JOIN to list employees who joined in 1982.
+
+Display employee and department records using NATURAL JOIN sorted by hire date.
+
+Show department-wise employee count using NATURAL JOIN.
+
+List employees from department number 20 using NATURAL JOIN.
+
+Use NATURAL JOIN to find employees working in department 'ACCOUNTING'.
+
+Display department names and average salaries using NATURAL JOIN.
+
+Show the sum of salaries per department using NATURAL JOIN.
+
+List department locations with maximum paid employees using NATURAL JOIN.
+
+Show employee names with department locations containing ‘C’.
+
+Use NATURAL JOIN to list employees and their department locations.
+
+Display department names where at least one employee earns above 3000.
+
+Show all departments that have employees with commission.
+
+Use NATURAL JOIN with GROUP BY to display department names and count of clerks.
+
+Display employees in department 30 using NATURAL JOIN.
+
+Show employees with job ‘ANALYST’ and department details.
+
+------------------------------------------------------------------------------------------------------
+🔹 23. OUTER JOIN
+Show all employees and their department details, even if not matched.
+
+List departments without any employees.
+
+Display all employees including those without departments using LEFT OUTER JOIN.
+
+Display all departments and the names of employees, if any, using RIGHT OUTER JOIN.
+
+Use FULL OUTER JOIN to display all EMP and DEPT info.
+
+Show departments with employee count, including zero.
+
+List all employees with department name and job (NULL where no match).
+
+Display employees who do not belong to any department.
+
+Use OUTER JOIN to find departments with no employees.
+
+List all employee and department combinations, even when one is missing.
+
+Show all department names including those without employees.
+
+Display department names and max salary using OUTER JOIN.
+
+Find employees with null department numbers using OUTER JOIN.
+
+Use LEFT JOIN to get employee details and matching department names.
+
+Find departments not assigned to any employee.
+
+Use OUTER JOIN to show employee and department info ordered by deptno.
+
+List employees with NULL department names using OUTER JOIN.
+
+Display employee names and their department names using RIGHT OUTER JOIN.
+
+Show job and department info for employees not assigned to a valid department.
+
+Combine EMP and DEPT with FULL OUTER JOIN and order by empno.
+
+------------------------------------------------------------------------------------------------------
+🔹 24. SELF JOIN
+Show employees and their managers (using SELF JOIN).
+
+List employees who earn more than their managers.
+
+Display employee and their manager’s job.
+
+Show all employees whose manager joined before them.
+
+Use SELF JOIN to display employee-manager hiredate differences.
+
+List managers who manage more than 2 people.
+
+Find managers who earn less than their subordinates.
+
+Display employees along with the number of subordinates they have.
+
+Show employee-manager pairs in department 10.
+
+List all employees with managers in the same job.
+
+Display managers who do not have any subordinates.
+
+Show employees whose managers have the same salary.
+
+Find managers who joined later than their subordinates.
+
+Display employee-manager pairs where manager’s name starts with ‘K’.
+
+Use SELF JOIN to find subordinates who earn more than their manager.
+
+Display employees along with manager’s salary and job.
+
+Show name pairs where employee and manager are from same department.
+
+Use SELF JOIN to display employee names with manager names in uppercase.
+
+List employees whose managers are from department 20.
+
+Display all manager-employee pairs using SELF JOIN sorted by manager name.
+
+------------------------------------------------------------------------------------------------------
+🔹 25. SINGLE ROW FUNCTIONS
+Show employee names in uppercase.
+
+Display first 3 letters of each employee’s name.
+
+List employees with names of exactly 5 characters.
+
+Show salaries rounded to the nearest 100.
+
+Display names and their length.
+
+Convert all department names to lowercase.
+
+Show hiredate in 'DD-MM-YYYY' format.
+
+Add 6 months to all hiredates.
+
+Show employees hired in the last 3 months using SYSDATE.
+
+Display employee names with their joining year.
+
+Replace ‘A’ with ‘@’ in employee names.
+
+Show the day name of hiredate for each employee.
+
+Use INSTR to find position of ‘A’ in each name.
+
+List employees whose names contain ‘LL’.
+
+Show last 2 characters of employee names.
+
+Display the number of months they’ve been in the company.
+
+Show employees hired in a leap year.
+
+Capitalize only the first letter of employee names.
+
+Find total number of days since each employee was hired.
+
+Show employee names reversed.
+
+------------------------------------------------------------------------------------------------------
+🔹 26. DDL, DML, DCL, TCL, DQL Statements
+Create a new table TEST_EMP with the same structure as EMP.
+
+Add a new column email to EMP.
+
+Remove the COMM column from EMP.
+
+Rename the column ENAME to EMP_NAME.
+
+Insert a new record into EMP.
+
+Update the salary of ‘KING’ by 10%.
+
+Delete employees hired before 1981.
+
+Create a new user and grant SELECT privilege on EMP.
+
+Revoke DELETE permission from a user.
+
+Commit changes after updating salary.
+
+Rollback a deletion done on EMP.
+
+Use SAVEPOINT before inserting records.
+
+List all employees using DQL (SELECT).
+
+Use DDL to drop table TEMP_EMP.
+
+Create a view of all employees in department 20.
+
+Use DCL to grant update privilege on DEPT to a user.
+
+Lock the EMP table in exclusive mode.
+
+Truncate the EMP table.
+
+Create a new index on SAL column.
+
+Use TCL to rollback to a named SAVEPOINT.
+------------------------------------------------------------------------------------------------------

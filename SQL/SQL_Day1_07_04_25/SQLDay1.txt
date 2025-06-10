@@ -1,0 +1,212 @@
+SQL(Structured Query Language) is a Backend Language.
+
+The 3 Level Architecture
+_______________________
+	Physical Level
+	Logical Level
+	View Level
+
+Front End Languages -> HTML, CSS, JS
+Back End Languages -> C, Python, Java, SQL.
+
+Purpose of SQL
+______________
+To Validate, Store Data and Communicate with Data Base.
+
+Data -> Data is a raw fact which describes the attributes (or) properties of an entity (or) object.
+Data Base -> DB is a place (or) medium where we can store data in systematic order and organised manner.
+
+CRUD operations
+_______________
+	C -> CREATE, INSERT
+	R -> READ, RETRIEVAL
+	U -> UPDATE, MODIFY
+	D -> DELETE, DROP.
+
+(DBMS)Data Base Management System
+_________________________________
+DBMS is a software which is used to maintain and manage the Data Base.
+It provides 2 main features to Data Base, They are 
+	1. Security
+	2. Authorization
+
+In Data Base data is stored in form of files. For each new data, we need each file, so Accessing (or) Retrieval is hard, takes much time and Space consumption is high.
+To communicate with DBMS we use Query Language.
+
+To solve this problem, we use (RDBMS)Relational Data Base Management System.
+RDBMS is a type of DBMS software which is used to manage, maintain the Data Base. 
+It stores data in form of Tables.
+It provides main features like
+	1. Security
+	2. Authorization.
+To communicate with RDBMS we use SQL.
+
+Relational Data Base Management System -> Tables which have relations.
+______________________________________
+
+Relational Model -> 
+________________
+Rows or Tuples or Records
+Columns or Attributes or Fields or Properties
+Cell is the smallest unit of a table, It is the intersection of a row and a column, generates space which is called as cell.
+  
+It consists of some rules which helps us to store data in the form of Tables.
+Edgarad Frankk Codd introduced these rules, There are 12 rules which are later combined into 4 rules.
+Any DBMS System which follows these Relational Model rules is known as RDBMS
+
+Rules of EF Codd
+________________
+	1. Data entered into a cell must be single valued.
+	2. Using RDBMS, we can store everything in the form of tables it includes metadata. 
+		Meta Data -> The further details about the data is called Meta Data, it is auto generated.
+	3. Using RDBMS, we can store data into multiple tables and if necessary we can establish connection between the tables using the key attributes.
+	4. The data entered into  a table/cell/column must be validated in 2 ways, they are
+		1. By assigning Data Types
+		2. By assigning Constraints.
+
+Data Types
+__________
+Data Types are used to specify what type of data can be stored in a particular column (or) location.
+There are 5 Data Types, They are
+	1. CHAR(SIZE)
+		It is Used to store character values (A-Z, a-z, 0-9, AaBb, !@#$%^&*()_+-=<>?:"{}|,./;'[]\)
+		It is mandatory to mention the characters in ''
+		SIZE accepts up to 2000 characters
+		It follows fixed length memory allocation. 
+	2. VARCHAR(SIZE)
+		It is Used to store character values (A-Z, a-z, 0-9, AaBb, !@#$%^&*()_+-=<>?:"{}|,./;'[]\)
+		It is mandatory to mention the characters in ''
+		SIZE accepts up to 2000 characters
+		It follows variable length memory allocation. 
+	3. VARCHAR2(SIZE)
+		It is Used to store character values (A-Z, a-z, 0-9, AaBb, !@#$%^&*()_+-=<>?:"{}|,./;'[]\)
+		It is mandatory to mention the characters in ''
+		SIZE accepts up to 4000 characters
+		It follows variable length memory allocation. 
+	4. DATE
+		It is Used to store data in the given oracle specified format
+		It is mandatory to mention the date in ''
+		It has 2 formats, They are
+			1. 'DD-MON-YYYY'
+			2. 'DD-MON-YY'
+	5. NUMBER(PRECISION, [SCALE])
+		It consists of 2 arguments, They are
+			1. PRECISION
+			2. SCALE
+		PRECISION -> It is used to store the integer values in the range (1 to 38)
+		SCALE -> It is used store/give decimal values in the range (-84 to 127), SCALE is optional
+			NUMBER(5) -> ±99999
+			NUMBER(5,2) -> ±999.99
+			NUMBER(2,5) -> ±000.99
+			NUMBER(5,5) -> ±.99999
+	6. LARGE OBJECTS
+		It stores huge amount of data, stores up to 4GB of memory.
+		It is of 2 types, They are
+			1. CHAR LARGE OBJECT (CLO) -> It stores character values up to 4GB.
+			2. BINARY LARGE OBJECT (BLO) -> It stores binary values up to 4GB.
+
+Constraints -> These are the rules given to a column or assigned to a column to validate the data
+___________
+	We have 5 Constraints
+		1. CHECK
+			It is used to check a condition and assign value.
+			It is a constraint provided with a specific condition, If the condition is satisfied data is stored and If the condition fails data is rejected.
+				CHECK(AGE>=20)
+		2. UNIQUE
+			It is used to avoid duplicated values into a column, It wont allow to insert duplicates. 
+		3. NOT NULL
+			It is used to avoid NULL values into a column, 'NULL' is a string and is accepted.
+		4. PRIMARY KEY
+			It is used to identify a record uniquely from a Table.
+			Characteristics of Primary Key are
+				1. No duplicate values are allowed.
+				2. NULL values are not allowed.
+				3. It is the combination of UNIQUE and NOT NULL.
+				4. A table can have only 1 column as a primary key.
+		5. FOREIGN KEY
+			It is used to identify a record's data uniquely from another Table.
+			It is used to establish connection between 2 Tables.
+			Characteristics of Foreign Key are
+				1. Duplicate values are allowed.
+				2. NULL values are allowed.
+				3. It is not a combination of UNIQUE and NOT NULL.
+				4. A table can have more than 1 column as a foreign key.
+				5. If a column wants to be a be a foreign key, it must be a Primary key in its own table or in the parent table.
+				6. It is also known as Referential Integrity Constraint.
+
+				
+							EMPLOYEE TABLE
+		_________________________________________________________________________________________________
+		| NUMBER      | VARCHAR    | NUMBER   | NUMBER          | VARCHAR  | NUMBER       | NUMBER      |
+		_________________________________________________________________________________________________
+		-------------------------------------------------------------------------------------------------
+		| SID         | NAME       | FEE      | PH_NO           | ADDRESS  | D_ID         | T_ID        |
+		_________________________________________________________________________________________________
+		-------------------------------------------------------------------------------------------------
+		| NOT NULL    | NOT NULL   | NOT NULL | NOT NULL        | NOT NULL |  FOREIGN KEY | FOREIGN KEY |
+		_________________________________________________________________________________________________
+		| UNIQUE      |            |          | UNIQUE          |          |              |             |
+		_________________________________________________________________________________________________
+		| CHECK       |            | CHECK    | CHECK           |          |              |             |
+		_________________________________________________________________________________________________
+		| PRIMARY KEY |            |          |                 |          |              |             |
+		_________________________________________________________________________________________________
+
+
+
+				       DEPARMENT TABLE
+				____________________________
+				| D_ID        | D_NAME     |									
+				____________________________
+				| NOT NULL    | NOT NULL   |		
+				____________________________
+				| UNIQUE      |            |		
+				____________________________
+				| PRIMARY KEY |            |		
+				____________________________
+				| CHECK       |            |		
+				____________________________
+
+
+				      TRANSACTION TABLE
+				____________________________
+				| T_ID        | T_NAME     |									
+				____________________________
+				| NOT NULL    | NOT NULL   |		
+				____________________________
+				| UNIQUE      |            |		
+				____________________________
+				| PRIMARY KEY |            |		
+				____________________________
+				| CHECK       |            |		
+				____________________________
+
+SQL Statements
+______________
+
+DDL -> Data Definition Language -> Helps us to create Structures or Tables in the Data Base.
+	1. CREATE
+	2. ALTER
+	3. DROP
+	4. RENAME
+	5. TRUNCATE
+
+DML -> Data Manipulation Language -> Helps us to perform operations on the data.
+	1. INSERT
+	2. UPDATE
+	3. DELETE
+
+TCL -> Transaction Control Language -> Helps us to control the transactions of the data.
+	1. COMMIT
+	2. ROLL BACK
+	3. SAVE POINT
+
+DCL -> Data Control Language -> Helps us to control the data flow between users. 
+	1. GRANT
+	2. REVOKE
+
+DQL -> Data Query Language -> Helps us to perform retrieve, fetch data from the Data Base.
+	1. SELECT
+	2. SELECTION
+	3. PROJECTION
+	4. JOINS

@@ -1,0 +1,79 @@
+EMP and DEPT Table
+FROM clause
+WHERE clause
+EXPRESSIONS
+LOGICAL OPERATORS
+MULTI ROW FUNCTIONS
+SPECIAL OPERATORS
+GROUP BY
+HAVING
+ORDER BY
+SUB QUERY CASE 1
+SUB QUERY CASE 2
+SUB QUERY CASE 1 and CASE 2
+INNER QUERIES CASE 1
+INNER QUERIES CASE 2
+INNER QUERIES CASE 1 and CASE 2
+TYPES OF SUB QUERIES
+EMP and MANAGER RELATIONSHIP
+MIN and MAX
+NESTED SUB QUERIES
+CROSS JOIN
+INNER JOIN 
+NATURAL JOIN
+OUTER JOIN
+SELF JOIN
+SINGLE ROW FUNCTIONS
+DDL, DML, DCL, TCL, DQL STATEMENTS
+
+SQL> SELECT DEPTNO, MAX(SAL) AS "SECOND HIGHEST SALARY" FROM EMP
+  2  WHERE SAL NOT IN (SELECT MAX(SAL) FROM EMP)
+  3  GROUP BY DEPTNO;
+
+    DEPTNO SECOND HIGHEST SALARY                                                                    
+---------- ---------------------                                                                    
+        30                  2850                                                                    
+        20                  3000                                                                    
+        10                  2450                                                                    
+
+SQL> SELECT SAL AS SMITH, (SELECT HIREDATE FROM EMP WHERE ENAME = 'ALLEN') AS ALLEN FROM EMP
+  2  WHERE ENAME = 'SMITH';
+
+     SMITH ALLEN                                                                                    
+---------- ---------                                                                                
+       800 20-FEB-81                                                                                
+
+SQL> SELECT SUM(SAL/SAL) AS TOTAL_ROWS
+  2  FROM EMP;
+
+TOTAL_ROWS                                                                                          
+----------                                                                                          
+        14                                                                                          
+
+SQL> SELECT MAX(SAL) "SECOND MAX SALARY"
+  2  FROM EMP
+  3  WHERE SAL NOT IN (
+  4                    SELECT MAX(SAL)
+  5                    FROM EMP) AND
+  6                    DEPTNO IN (
+  7                              SELECT DEPTNO
+  8                              FROM DEPT
+  9                              WHERE DNAME = 'ACCOUNTING');
+
+SECOND MAX SALARY                                                                                   
+-----------------                                                                                   
+             2450                                                                                   
+
+SQL> SELECT MAX(SAL) FROM EMP
+  2  WHERE SAL < (SELECT MAX(SAL) FROM EMP)
+  3  UNION
+  4  SELECT MAX(SAL) FROM EMP
+  5  WHERE SAL < (SELECT MAX(SAL) FROM EMP
+  6  WHERE SAL < (SELECT MAX(SAL) FROM EMP));
+
+  MAX(SAL)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+      2975                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+      3000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
+SQL> SPOOL OFF

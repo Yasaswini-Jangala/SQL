@@ -1,0 +1,425 @@
+If we don't give any constraint, then compiler automatically generates a constraint to all the columns.
+
+SELECT *
+FROM USER_CONSTRAINTS
+WHERE TABLE_NAME = 'EXISTING_TABLE_NAME';
+In USER_CONSTRAINTS, NOT NULL is also considered as Check 
+
+Nth Max Sal
+-----------
+	2nd, 3rd, 5th Max Sal
+	--------------------- 
+	SELECT DISTINCT(SAL)
+	FROM EMP E1
+	WHERE (SELECT COUNT(DISTINCT SAL)
+		FROM EMP E2
+		WHERE E1.SAL <= E2.SAL) IN (2,3,5)
+
+CASE
+----
+	SELECT SAL, CASE
+			WHEN SAL > 3000 THEN '3000'
+			WHEN BETWEEN 5500 AND 6000 THEN '5000 AND 6000'
+			WHEN SAL LIKE '/%'
+			WHEN ENAME LIKE '-%'
+		END AS NEW_COL_NAME
+	FROM EMP;
+
+	SELECT SAL, CASE
+			WHEN SAL > 3000 THEN '3000'
+			WHEN BETWEEN 5500 AND 6000 THEN '5000 AND 6000'
+			WHEN SAL LIKE '/%%'
+			WHEN ENAME LIKE '-%%'
+		END AS NEW_COL_NAME
+	FROM EMP;
+
+	SELECT SAL, CASE
+			WHEN SAL > 3000 THEN '3000'
+			WHEN BETWEEN 5500 AND 6000 THEN '5000 AND 6000'
+			WHEN SAL LIKE '%/%%'
+			WHEN ENAME LIKE '%-%%'
+		END AS NEW_COL_NAME
+	FROM EMP;
+
+
+
+	SELECT EMP.*, CASE
+        	          WHEN COMM IS NULL THEN 'Waste Fellow'
+                	  WHEN COMM IS NOT NULL THEN 'Good Employee'
+              	END AS FEEDBACK
+	FROM EMP;
+
+	NOTE: Use '/SYMBOL' to check with the specific character in Like, where SMBOL is '%' (or) '-' (or) any other character.
+
+Data Definition Language(DDL) -> To deal with the Structure of Table
+-----------------------------
+	In DESC, it won't display UNIQUE and PRIMARY KEY 
+1. CREATE -> It is used to Create a Table
+	Foreign Key -> CONSTRAINT CONSTRAINT_REFERENCE_NAME FOREIGN KEY (FOREIGN_KEY_NAME) REFERENCES PRIMARY_KEY_TABLE_NAME(PRIMARY_KEY_NAME)
+	Whenever we define a Table with VARCHAR, it updates to VARCHAR2.
+ 
+	SYNTAX
+		CREATE TABLE TABLE_NAME 
+		(
+			COL_1 DATA_TYPE [CONSTRAINTS],
+			COL_2 DATA_TYPE [CONSTRAINTS], …… ,
+			COL_N DATA_TYPE [CONSTRAINTS]
+		);
+			CREATE TABLE MOVIES
+			(
+				TITLE VARCHAR(25) NOT NULL, 
+				ACTOR VARCHAR(22),
+				ACTRESS VARCHAR(25),
+				DIRECTOR VARCHAR(22) NOT NULL,
+				RELEASE_DATE DATE NOT NULL,
+				RATING NUMBER(3,2) NOT NULL CHECK(RATING <= 5)
+			);
+
+			CREATE TABLE EX1
+			(
+				SLNO NUMBER(5)  PRIMARY KEY,
+				NAME CHAR(20) NOT NULL,
+				DEPTNO NUMBER(5),
+				CONSTRAINT EX_FK FOREIGN KEY (DEPTNO) REFERENCES DEPT(DEPTNO)
+			);
+
+2. RENAME -> It is used to Rename a Table
+	SYNTAX
+		RENAME EXISTING_TABLE_NAME TO NEW_TABLE_NAME;
+			RENAME EX1 TO EXTRA_TABLE;
+			DESC TABLE_NAME; -> Shows all the Columns in a Table
+
+3. ALTER -> It is used to do alterations in a Table or modify the structure of a Table.
+	1. To add a column into an existing Table
+	SYNTAX
+		ALTER TABLE TABLE_NAME
+		ADD COL_NAME DATA_TYPE [CONSTRAINTS];
+
+	2. To rename a column
+	SYNTAX
+		ALTER TABLE TABLE_NAME
+		RENAME COLUMN EXISTING_NAME TO NEW_NAME;
+
+	3. To drop a column
+	SYNATX 
+		ALTER TABLE TABLE_NAME
+		DROP COLUMN COL_NAME;
+
+	4. To modify the Data Type of a column
+	SYNATX 
+		ALTER TABLE TABLE_NAME
+		MODIFY COL_NAME NEW_DATA_TYPE;
+
+	5. To modify constraints.
+	SYNATX
+		ALTER TABLE TABLE_NAME
+		MODIFY COL_NAME EXISTING_DATA_TYPE NEW_CONSTRAINT;
+
+	6. To add Foreign Key -> First add a column and then make that column as the Foreign Key.
+	SYNATX 
+ 		ALTER TABLE TABLE_NAME
+		ADD COL_NAME DATA_TYPE;
+
+		ADLTER TABLE TABLE_NAME
+		ADD CONSTRAINT CONSTRAINT_REFERENCE_NAME FOREIGN KEY(COL_NAME)
+			REFERENCES REFERENCE_TABLE_NAME (COL_NAME);
+
+	7. To drop a constraint of a particular column
+	SYNATX 
+ 		ALTER TABLE TABLE_NAME
+		DROP CONSTRAINT COL_NAME;
+
+4. DROP -> To drop a Table from database and dropped Table will be stored in BIN folder.
+	SYNTAX
+		DROP TABLE TABLE_NAME;
+
+	FLASHBACK -> It is used to restore a Table which is dropped from BIN folder.
+		SYNTAX
+			FLASHBACK TABLE TABLE_NAME TO BEFORE DROP;
+		
+	To check a Folder in BIN Folder
+		SYNTAX
+			SHOW RECYCLEBIN;
+
+	PURGE -> To delete the Table Permanently from BIN and To PURGE a Table, It must be present in RECYCLEBIN.
+		SYNTAX
+			PURGE TABLE TABLE_NAME;
+
+5. TRUNCATE -> It is used to delete the records from a Table permanently, but it remains the structure of the Table as it is.
+	SYNTAX
+		TRUNCATE TABLE TABLE_NAME;
+		
+
+
+Data Manipulation Language(DML) -> To manipulate with the data of Table
+-----------------------------
+DML statements are called Transactions.
+DML commands are not auto-commit statements, They should be COMMIT manually.
+1. INSERT-> To insert records into the Table
+	SYNTAX 
+		1. Insert into columns
+		INSERT INTO TABLE_NAME
+		VALUES (
+			Value_1, Value_2, Value_3,.....,Value_N_
+			); 
+
+		2. Insert into some columns only
+		INSERT INTO TABLE_NAME (COL_NAME_1, COL_NAME_4, COL_NAME_5,..., COL_NAME_N)
+		VALUES (
+			Value_1, Value_4, Value_5,.....,Value_N_
+			); 
+
+		3. Insert into some columns and some NULL
+		INSERT INTO TABLE_NAME (COL_NAME_1, COL_NAME_3,..., COL_NAME_N)
+		VALUES (
+			Value_1, Value_3,.....Value_N_
+			); 
+
+		4. Insert multiple records
+		INSERT ALL 
+		INTO TABLE_NAME VALUES (VALUES_SET_1)
+		INTO TABLE_NAME VALUES (VALUES_SET_2)
+			);
+
+		5. Insert multiple records with some NULL values
+		INSERT ALL 
+		INTO TABLE_NAME VALUES (Value_1, NULL, Value_3,.....Value_N_)
+		INTO TABLE_NAME VALUES (Value_1, NULL, Value_3,.....Value_N_)
+
+		6. User Input
+		INSERT INTO TABLE_NAME
+		VALUES (
+			&COL_NAME_1, '&COL_NAME_2', &'COL_NAME_3'
+			); 
+		Click "/" and then "ENTER" -> To give user inputs.
+
+2. UPDATE -> It is used to update the values present in a Table.
+	SYNTAX
+		1. Single Column for a Single Record
+		UPDATE TABLE_NAME
+		SET COL_NAME = VALUE
+		[WHERE <FILTER_CONDITION>];
+
+		2. Multiple Columns for a Single Record
+		UPDATE TABLE_NAME
+		SET COL_NAME_1 = Value_1,COL_NAME_2 = Value_2 
+		[WHERE <FILTER_CONDITION>];
+
+3. DELETE -> It is used to dalate a particular record or records from Table
+	SYNTAX
+		DELETE FROM TABLE_NAME
+		[WHERE <FILTER_CONDITION>];
+		
+		If we don't use WHERE clause then it behaves like TRUNCATE
+
+(TCL) Transaction Control Language
+----------------------------------
+It is used to control the Transactions like Insertion, Updating, Deletion
+1. COMMIT -> It is used to save the Transactions permanently.
+	SYNTAX
+		COMMIT;
+
+2. ROLLBACK -> It is used to take back to the point where you have committed recently
+	       All the SAVEPOINTS will be gone
+	SYNTAX
+		ROLLBACK;
+		ROLLBACK TO SAVEPOINT_NAME;
+			It will delete the data present after that SAVEPOINT_NAME command;
+
+3. SAVEPOINT -> It is used to mark temporary positions so that we can store data temporarily
+	SYNTAX
+		SAVEPOINT SAVEPOINT_NAME;
+
+Data Control Language (DCL)
+---------------------------
+It is used to control the flow between users.
+
+1. GRANT
+	CREATE USER NEW_USER_NAME or C##NEW_USER_NAME IDENTIFIED BY PASSWORD;
+	CONN -> asks for new_user_name and password 
+		Enter user-name: SYSTEM and Enter password: orcl123
+	SHOW USER;
+	GRANT ALL PRIVILAGES TO C##USER_NAME
+
+	SYNTAX
+		GRANT SQL_STATEMENT
+		ON TABLE_NAME
+		TO NEW_USER_NAME;
+			To grant permission for Insert or Update or Delete or Connect to Data Base
+
+		GRANT SELECT 
+		ON TABLE_NAME
+		TO NEW_USER_NAME;
+		
+		SELECT * FROM OWNER_USER_NAME.TABLE_NAME
+		
+2. REVOKE
+	CONN -> asks for new_user_name and password 
+	SHOW USER;
+
+	SYNTAX
+		REVOLE SQL_STATEMENT
+		ON TABLE_NAME
+		FROM NEW_USER_NAME;
+
+		REVOKE SELECT 
+		ON TABLE_NAME
+		FROM NEW_USER_NAME;
+
+	NOTE	'/' Gives the ceil value
+
+
+Single-Row Functions
+--------------------
+	We can use Column Names with Multi-Row Functions. 
+	We can use 
+	1. LENGTH('String') -> It is used to get number of characters present in a String and 
+		SYNTAX
+			SELECT LENGTH('String')
+			FROM TABLE_NAME or DUMMY -> prints the Length of String as No. of records present
+
+			SELECT LENGTH('String'), LENGTH(SAL)
+			FROM TABLE_NAME or DUMMY -> prints the no. of digits in the number as No. of records present
+		
+	2. CONCAT('String1', 'String2') -> It is used to merge 2 Strings and It ignores NULL values
+		SYNTAX
+			SELECT CONCAT('String1','String2'), LENGTH(SAL)
+			FROM TABLE_NAME or DUMMY;
+
+			SELECT CONCAT('HEY','Mr.'||ENAME)
+			FROM EMP;
+			
+			
+	3. MOD(Number1, Number2) -> It is used to get the remainder of 2 values
+		SYNTAX
+			SELECT MOD(10,2)
+			FROM EMP;
+
+	4. UPPER('String') -> It is used to convert a String into Uppercase
+		SYNTAX
+			SELECT UPPER('AaBbcCdD')
+			FROM DUAL;
+
+	5. LOWER('String') -> It is used to convert a String into Lowercase
+		SYNTAX
+			SELECT LOWER('AaBbcCdD')
+			FROM DUAL;
+
+	6. INITCAP('String') -> It is used to display 1st character in Uppercase
+		SYNTAX
+			SELECT INITCAP('ABCDEFG')
+			FROM DUAL; -> Abcdef
+
+
+	7. REVERSE('String') -> It is used to reverse a String, but it doesn't change the case
+		SYNTAX
+			SELECT REVERSE('AaBbcCdD')
+			FROM DUAL; -> Gives error for Number values
+
+
+	8. SUBSTR('OriginalString1', Start_Position, [Length]) -> It is used to obtain a part of a String
+		Start_Position(Forward) starts from 1 and Negative Start_Position(Backward) from -1 and includes the Start_Position.
+		SYNTAX
+			SELECT SUBSTRING('AaBbCcdDeEfF', 3, [11])
+			FROM DUAL;
+
+			SELECT SUBSTR('AaBbCcdDeEfF', 3, 15)
+			FROM DUAL;  -> Displays only up to the possible characters which are over the length of String
+
+			SELECT SUBSTR('AaBbCcdDeEfF', -3, [6])
+			FROM DUAL; -> Displays from Right and dislays only up to the possible characters which are over the length of String.
+	
+	9. INSTR('OriginalString1', 'String_to_get_its_position', position_to_start_from, [occurance]) -> It is used to obtain the position of character present in a String
+		SYNTAX
+			SELECT INSTR('AaBbCcdDeEfF', 'CcdD', 2, [2])
+			FROM DUAL; -> It gives the occurance of the String_to_get_its_position
+
+			SELECT INSTR('AaBbCcdDeEfF', 'CcdD', 2)
+			FROM DUAL; -> It gives the occurance of the String_to_get_its_position
+
+	10. REPLACE('ExistingString', 'String_To_Be_Replaced', ['New_String']) -> It is used to replace a part of a String with a new String
+		SYNTAX
+			SELECT REPLACE('AaBbCcdDeEfF', 'Cc', 'Zz')
+			FROM DUAL; -> It replaces Cc to Zz
+
+			SELECT REPLACE('AaBbCcdDeEfF', 'Cc')
+			FROM DUAL; -> It removes the String_To_Be_Replaced, if New String is not given
+
+	11. ROUND(Integer.Decimal) -> It is used to round off the values
+		SYNTAX
+			SELECT ROUND(22.5)
+			FROM DUAL; -> It gives 23
+			
+			SELECT ROUND(22.6)
+			FROM DUAL; -> It gives 24
+			
+			SELECT ROUND(22.4)
+			FROM DUAL; -> It gives 22
+
+	12. TRUNC(Integer.Decimal) -> It is used to round off the values (floor)
+		SYNTAX
+			SELECT ROUND(22.5)
+			FROM DUAL; -> It gives 23
+			
+			SELECT ROUND(22.6)
+			FROM DUAL; -> It gives 22
+			
+			SELECT ROUND(22.4)
+			FROM DUAL; -> It gives 22
+
+	13. TRIM('String') -> It is used to remove empty spaces in a String at beginning and ending
+		SYNTAX
+			SELECT TRIM('    Aa Bb Cc dD eE fF    ')
+			FROM DUAL;
+
+	14. MONTHS_BETWEEN('HigherDate', 'LowerDate') -> It is used to count the number of months between 2 dates
+		SYNTAX
+			SELECT TRIM('01-APR-2025', '01-APR-2024')
+			FROM DUAL; 
+
+	16. SYSDATE() -> It is used to get present Date
+		SYNTAX
+			SELECT SYSDATE()
+			FROM DUAL;
+
+	17. SYSTIMESTAMP() -> It is used to get present Date, Time, AM/PM etc
+		SYNTAX
+			SELECT SYSTIMESTAMP()
+			FROM DUAL;
+
+	18. LAST_DAY('DATE') -> It is used to get ending Date of a month
+		SYNTAX
+			SELECT LAST_DAY('02-FEB-2024')
+			FROM DUAL;
+
+	19. TO_CHAR(VALUE) -> It is used to convert values to characters
+		SYNTAX
+			SELECT REVERSE(TO_CHAR(SAL))
+			FROM EMP;
+
+			SELECT TO_CHAR('DATE', 'FORMAT_MODELS')
+			FROM DUAL;
+
+				FORMAT_MODELS
+					YEAR - TWENTY TWENTY-FIVE
+					YYYY - 2025
+					YY - 25
+
+					MONTH - APRIL
+					MON - APR
+					MM - 04
+
+					DAY - SATURDAY
+					DY - SAT
+					D - 7
+
+					DD - 12
+					HH24 - 10
+					HH12 - 10
+					MI - 12
+					SS - 45
+					
+	20. NVL(COL_NAME, DEFAULT_VALUE) -> Null Value Login is used to deal with NULL values
+		SYNTAX
+			SELECT SAL + NVL(COMM, 0)
+			FROM EMP;

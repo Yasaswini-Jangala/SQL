@@ -1,0 +1,182 @@
+SQL COMMANDS
+____________
+	1. DQL Commands
+		1. SELECT
+			It is used to retrieve or fetch the data from the Table and display it.
+
+		2. PROJECTION
+			It is used to retrieve or fetch data from the table by only selecting the columns.
+			SYNTAX
+				SELECT [DISTINCT] COL_NAME/ */ EXPRESSION [ALIAS]
+				FROM TABLE_NAME;
+					DISTINCT -> It is used to remove duplicate values from the result table.
+						    It is the 1st argument in the SELECT clause
+						    We can send 1 or more columns with DISTINCT, here it will check for the uniqueness of both the columns together.
+					EXPRESSION -> Any statement which gives result is known as EXPRESSION.
+						      It is the combination of operators and operands which gives result.
+					ALIAS -> It is used to give an alternative name for the column or a table in the result table.
+						 It can be given  in 3 ways, They are
+						 	1. [AS] NEW_COLUMN_NAME
+						 	2. [AS] NewColumnName
+						 	3. [AS] "NEW COLUMN NAME"
+						    
+		3. SELECTION
+			It is used to retrieve or fetch data from the table by selecting both columns and rows.
+			SYNTAX
+				SELECT [DISTINCT] COL_NAME/ */ EXPRESSION [ALIAS]
+				FROM TABLE_NAME
+				WHERE <FILTER_CONDITION>
+					WHERE clause executes row by row.
+		
+		4. JOIN
+			It is used to retrieve or fetch data from multiple tables simultaneously.
+
+OPERATORS
+_________
+	1. ARITHMETIC OPERATORS -> (+, -, *, /)
+
+	2. RELATIONAL OPERATORS -> (>, <, >=, <=)
+
+	3. COMPARISION OPERATORS -> (=, != (or) <>)
+
+	4. CONCATENATION OPERATORS -> (||) 
+		It is used to merge 2 strings (or) columns.
+		SELECT 'STRING1' || 'COL_NAME' FROM TABLE_NAME;
+
+	5. LOGICAL OPERATORS -> (AND, OR, NOT)
+		They are used to evaluate one or more conditions
+
+	6. SPECIAL OPERATORS -> (IN, NOT IN, IS, IS NOT, LIKE, NOT LIKE, BETWEEN, NOT BETWEEN)
+		IN -> It is a multi-valued operator which accepts one value at LHS and multiple values at RHS
+			SYNTAX -> COL_NAME IN (Value1, Value2, Value3, ..., Value4) 
+		NOT IN -> It is a multi-valued operator which accepts one value at LHS and multiple values at RHS
+			SYNTAX -> COL_NAME NOT IN (Value1, Value2, Value3, ..., Value4) 
+
+		IS -> It is used to deal with NULL values, Checks if value is NULL
+			SYNTAX -> COL_NAME IS NULL  
+		IS NOT -> It is used to deal with NULL values, Checks if value is NOT NULL
+			SYNTAX -> COL_NAME IS NOT NULL
+
+		BETWEEN -> It is used to check the values if the value is present in the range of values including the values
+			SYNTAX -> COL_NAME BETWEEN Value1 AND Value2 
+		NOT BETWEEN -> It is used to check the values if the value is not present in the range of values including the values
+			SYNTAX -> COL_NAME NOT BETWEEN Value1 AND Value2 
+
+		LIKE -> It is used to match a pattern
+			We use 2 wildcard characters to match a pattern, They are
+				1. '%' -> Accepts any number of characters
+					  Accepts any character
+					  Same character is accepted any number of times.
+					  Accepts no characters
+					  ' ' (SPACE) is also considered as a character.
+				2. '-' -> Accepts only 1 character
+					  Accepts any character
+					  Accepts no characters
+					  ' ' (SPACE) is also considered as a character.
+
+			SYNTAX -> COL_NAME LIKE 'Pattern to Match'
+		NOT LIKE -> It is used neglect a pattern
+			SYNTAX -> COL_NAME NOT LIKE 'Pattern to Match'
+
+	7. SUB QUERY OPERATORS -> (ALL, ANY, EXISTS, NOT EXISTS)
+
+FUNCTIONS -> Function is a set of instructions (or) block of code to perform a specific task.
+_________
+We have 2 types of Functions, They are
+	1. User-Defined functions
+	2. Built-In functions -> In Built-In functions, we have 2 types of functions, They are
+		1. Single Row Functions.
+			Here we have 'N' number of inputs and 'N' number of outputs
+		2. Multi Row functions (or) Group functions (or) Aggregate functions
+			Here we have 'N' number of inputs and only 1 output
+			The 5 Aggregate functions are as below
+			1. MAX(COL_NAME) 
+			2. MIN(COL_NAME) 
+			3. AVG(COL_NAME) 
+			4. SUM(COL_NAME) 
+			5. COUNT(COL_NAME)
+
+Rules to Use Multi-Row functions
+________________________________
+1. We use Multi-Row functions in SELECT clause.
+2. SELECT clause accepts multiple Multi-Row functions.
+3. Multi-Row functions accept only 1 column as argument.
+4. Along with Multi-Row functions, we can not pass any other COL_NAME.
+5. WHERE clause does not accept any Multi-Row functions.
+6. Multi-Row functions ignores NULL values.
+6. COUNT is the only Aggregate function  which accepts '*'as an argument.
+
+GROUP BY
+________
+It is used to Group the records based on an specific column and It checks for each record.
+The GRP_EXPRESSION is the EXPRESSION that we write in GROUP BY clause.
+While using GROUP BY, we do not use '*' in SELECT clause.
+ 
+SYNTAX
+	SELECT GRP_FUNCTION/ GRP_EXPRESSION
+	FROM TABLE_NAME
+	WHERE FILTER_CONDITION
+	GROUP BY COL_NAME/ EXPRESSION;
+
+	SEELCT COUNT(*),COL_NAME FROM TABLE_NAME GROUP_BY COL_NAME;
+
+HAVING
+______
+It is used to filter the group. and It executes after the GROUP BY clause.
+SYNTAX	
+	SELECT GROUP_FUNCTION/ GRP_EXPRESSION
+	FROM TABLE_NAME
+	WHERE FILTER_CONDITION
+	GROUP BY COL_NAME/ EXPRESSION
+	HAVING GROUP_FILTER_CONDITION;
+
+___________________________________________________________________________________________________________________                                              
+|		      WHERE                                 |                     HAVING			  |
+|___________________________________________________________|_____________________________________________________|                                              
+|  1. It consists of normal filter condition.	            | 	1. It consists of GROUP BY filter condition       |                                          
+|  2. It has a maximum of 3 clauses			    | 	2. It has a maximum of 5 clauses                  |                           
+|	SELECT, FROM, WHERE  				    |           SELECT, FROM, WHERE, GROUP BY, HAVING     |
+|  3. It does not accept Group functions		    | 	3. It accepts the Group functions.                |                              
+|  4. We can use it without GROUP BY			    | 	4. We can not use it without GROUP BY.		  |
+____________________________________________________________|______________________________________________________                                              
+
+ROLL UP -> Used to find Grand Total and Sub Total
+_______
+SYNTAX
+	SELECT COL_NAMES/ AGGREGATE_FUNCTIONS
+	FROM TABLE_NAME
+	GROUP BY ROLLUP(COL_NAMES);
+
+CUBE -> Used to find Sub Total, Grand Total and all other possible Grand Totals. 
+____
+SYNTAX
+	SELECT COL_NAMES/ AGGREGTE_FUNCTIONS
+	FROM TABLE_NAME
+	GROUP BY CUBE(COL_NAMES) 
+
+ORDER BY -> Arranges the data in Ascending order or Descending order
+________
+ORDER BY is the only clause that executes after SELECT clause.
+By default ASC is selected. 
+ASC -> Ascending order
+DESC -> Descending order
+
+It has 3 syntaxes
+SYNTAX 1
+	SELECT */ COL_NAME/ EXPRESSION
+	FROM TABLE_NAME
+	WHERE <FILTER_CONDITION>
+	ORDER BY COL_NAME/ EXPRESSION ASC (or) DESC;
+
+SYNTAX 2
+	SELECT GROUP_FUNCTION/ GROUP_EXPRESSION
+	FROM TABLE_NAME
+	WHERE <FILTER_CONDITION>
+	GROUP BY COL_NAME/ EXPRESSION
+	HAVING GROUP_FILTER_CONDITION
+	ORDER BY COL_NAME/ EXPRESSION ASC (or) DESC;
+
+SYNTAX 3
+	SELECT GROUP_FUNCTION/ GROUP_EXPRESSION
+	FROM TABLE_NAME
+	ORDER BY COL_NUMBER_FROM_TABLE_WHERE_COLUMNS_START_FROM_1; 
